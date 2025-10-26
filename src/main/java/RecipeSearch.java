@@ -19,34 +19,57 @@ public class RecipeSearch {
         System.out.println("Commands:");
         System.out.println("list - lists the recipes");
         System.out.println("stop - stops the program");
+        System.out.println("find name - searches recipes by name");
 
         while (true) {
             System.out.println("Enter command:");
 
             String command = input.getCommand();
+            Scanner readFile;
 
-            if (command.equals("stop")) {
-                break;
-            }
-
-            if (command.equals("list")) {
-                try {
-                    Scanner readFile = new Scanner(new File(fileName));
+            try {
+                readFile = new Scanner(new File(fileName));
+                
+                if (recipeList.size() == 0) {
                     recipeList = input.readFile(readFile);
-                    List(recipeList);
-
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(RecipeSearch.class.getName()).log(Level.SEVERE, null, ex);
                 }
+
+                if (command.equals("stop")) {
+                    break;
+                }
+
+                if (command.equals("list")) {
+                    list(recipeList);
+
+                }
+
+                if (command.equals("find name")) {
+                    System.out.println("Searched word:");
+                    String word = input.getNameToSearch();
+                    searchFile(recipeList, word);
+                }
+
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(RecipeSearch.class.getName()).log(Level.SEVERE, null, ex);
             }
+
         }
 
     }
 
-    public static void List(ArrayList<Recipe> recipeList) {
+    public static void list(ArrayList<Recipe> recipeList) {
         System.out.println("Recipes:");
         for (Recipe recipe : recipeList) {
             System.out.println(recipe.getName() + ", cooking time: " + recipe.getTime());
+        }
+    }
+
+    public static void searchFile(ArrayList<Recipe> recipeList, String word) {
+        System.out.println("Recipes:");
+        for (Recipe recipe : recipeList) {
+            if (recipe.getName().contains(word)) {
+                System.out.println(recipe.getName() + ", cooking time: " + recipe.getTime());
+            }
         }
     }
 

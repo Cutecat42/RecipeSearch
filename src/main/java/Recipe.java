@@ -31,6 +31,6 @@ public class Recipe {
     }
     
     public String toString() {
-        return "";
+        return "Recipe name: "+ this.name + ", Cooking time: " + this.time + ", Ingredients: " + this.ingredients;
     }
 }

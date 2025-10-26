@@ -34,6 +34,11 @@ public class UserInput {
         String input = this.scanner.nextLine();
         return input;
     }
+    
+    public String getNameToSearch() {
+        String input = this.scanner.nextLine();
+        return input;
+    }
 
     public ArrayList<Recipe> readFile(Scanner scanner) {
         while (scanner.hasNextLine()) {
@@ -55,11 +60,11 @@ public class UserInput {
                     time = Integer.valueOf(singleRecipeSplit[i]);
 
                     for (int x=0;x<singleRecipeSplit.length;x++) {
-                        if (singleRecipeSplit[x] != singleRecipeSplit[i]) {
+                        if (!singleRecipeSplit[x].equals(singleRecipeSplit[i])) {
                             recipeName += singleRecipeSplit[x] + " ";
                             
                         }
-                        if (singleRecipeSplit[x] == singleRecipeSplit[i]) {
+                        if (singleRecipeSplit[x].equals(singleRecipeSplit[i])) {
                             break;
                         }
                     }
