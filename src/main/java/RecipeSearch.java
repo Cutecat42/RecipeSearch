@@ -20,6 +20,7 @@ public class RecipeSearch {
         System.out.println("list - lists the recipes");
         System.out.println("stop - stops the program");
         System.out.println("find name - searches recipes by name");
+        System.out.println("find cooking time - searches recipes by cooking time");
 
         while (true) {
             System.out.println("Enter command:");
@@ -48,6 +49,12 @@ public class RecipeSearch {
                     String word = input.getNameToSearch();
                     searchFile(recipeList, word);
                 }
+                
+                if (command.equals("find cooking time")) {
+                    System.out.println("Max cooking time:");
+                    int time = input.getTimeToSearch();
+                    searchFileWithTime(recipeList, time);
+                }
 
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(RecipeSearch.class.getName()).log(Level.SEVERE, null, ex);
@@ -68,6 +75,15 @@ public class RecipeSearch {
         System.out.println("Recipes:");
         for (Recipe recipe : recipeList) {
             if (recipe.getName().contains(word)) {
+                System.out.println(recipe.getName() + ", cooking time: " + recipe.getTime());
+            }
+        }
+    }
+    
+    public static void searchFileWithTime(ArrayList<Recipe> recipeList, int time) {
+        System.out.println("Recipes:");
+        for (Recipe recipe : recipeList) {
+            if (recipe.getTime() <= time) {
                 System.out.println(recipe.getName() + ", cooking time: " + recipe.getTime());
             }
         }

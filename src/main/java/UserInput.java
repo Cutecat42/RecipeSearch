@@ -39,6 +39,11 @@ public class UserInput {
         String input = this.scanner.nextLine();
         return input;
     }
+    
+    public int getTimeToSearch() {
+        int input = Integer.valueOf(this.scanner.nextLine());
+        return input;
+    }
 
     public ArrayList<Recipe> readFile(Scanner scanner) {
         while (scanner.hasNextLine()) {
