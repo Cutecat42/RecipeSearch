@@ -19,7 +19,7 @@ public class Recipe {
     public Recipe(String name, int time, ArrayList<String> ingredients) {
         this.name = name;
         this.time = time;
-        this.ingredients = ingredients;
+        this.ingredients = new ArrayList<>(ingredients);
     }
     
     public String getName() {
@@ -30,7 +30,12 @@ public class Recipe {
         return this.time;
     }
     
+    public ArrayList<String> getIngredients() {
+        return this.ingredients;
+    }
+    
+    @Override
     public String toString() {
-        return "Recipe name: "+ this.name + ", Cooking time: " + this.time + ", Ingredients: " + this.ingredients;
+        return "Recipe name: "+ this.name + ", Cooking time: " + this.time + ", Ingredients: " + this.ingredients.toString();
     }
 }

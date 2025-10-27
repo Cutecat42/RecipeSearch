@@ -14,35 +14,48 @@ import java.util.Scanner;
 public class UserInput {
 
     private Scanner scanner;
-    private String recipes;
     private ArrayList<Recipe> recipeList;
+    private String recipes;
     private ArrayList<String> ingredients;
+    private String stringInput;
+    private int intInput;
 
     public UserInput(Scanner scanner) {
         this.scanner = scanner;
-        this.recipes = "";
         this.recipeList = new ArrayList<Recipe>();
-        this.ingredients = new ArrayList<>();
+        this.recipes = "";
+        this.ingredients = new ArrayList<String>();
+
+    }
+    
+    public String getInputString() {
+        stringInput = this.scanner.nextLine();
+        return stringInput;
+    }
+    
+    public Integer getInputInt() {
+        intInput = Integer.valueOf(this.scanner.nextLine());
+        return intInput;
     }
 
-    public String getFileName() {
-        String input = this.scanner.nextLine();
-        return input;
+    public String getFileName() { 
+        return this.getInputString();
     }
     
     public String getCommand() {
-        String input = this.scanner.nextLine();
-        return input;
+        return this.getInputString();
     }
     
     public String getNameToSearch() {
-        String input = this.scanner.nextLine();
-        return input;
+        return this.getInputString();
     }
     
     public int getTimeToSearch() {
-        int input = Integer.valueOf(this.scanner.nextLine());
-        return input;
+        return this.getInputInt();
+    }
+    
+    public String getIngredientToSearch() {
+        return this.getInputString();
     }
 
     public ArrayList<Recipe> readFile(Scanner scanner) {
@@ -78,7 +91,7 @@ public class UserInput {
                     }
                     
                     Recipe r = new Recipe(recipeName.trim(),time,this.ingredients);
-                    this.recipeList.add(r);
+                    this.recipeList.add(r);                    
                     
                     recipeName = "";
                     time=0;
@@ -89,6 +102,7 @@ public class UserInput {
                 }
             }
         }
+
         return this.recipeList;
     }
 }
